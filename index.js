@@ -34,7 +34,7 @@ get();
 document.getElementById("confirm-button").addEventListener("click", confirmSelect);
 document.getElementById("name").addEventListener("change", (e)=>localStorage.setItem("dixit.name", e.target.value));
 
-var themes = [{image:"assets/waifu.jpg",name:"Waifus",value:"waifu"},{image:"assets/photo.jpg",name:"Photos",value:"pictures"},{image:"assets/ac.jpg",name:"Animal crossing",value:"ac"}];
+var themes = [{image:"assets/waifu.jpg",name:"Waifus",value:"waifu"},{image:"assets/photo.jpg",name:"Photos",value:"pictures"},{image:"assets/ac.jpg",name:"Animal crossing",value:"ac"},{image:"assets/cats.jpg",name:"Chats",value:"cats"}];
 initSelector(document.getElementById("theme-select"), themes);
 
 var gamemodes = [{image:"assets/score.jpg",name:"Objectif score",value:"score"},{image:"assets/turns.jpg",name:"Nombre de tours",value:"turn"}];

@@ -57,14 +57,18 @@ if ($theme == "waifu") {
 		if (!in_array($image, $cards))
 			array_push($cards, $image);
 	}
-} else if($theme = "pictures") {
+} else if ($theme == "cats") {
+	while (count($cards) < count($game->players)*7*2) {
+		$cards = array_merge($cards, array_map(function($r){return $r->url;}, json_decode(file_get_contents("https://api.thecatapi.com/v1/images/search?limit=100"))));
+	}
+} else if ($theme == "pictures") {
 	for ($page = 1; count($cards) < count($game->players)*7*2*3; $page++) { // *3 pour faire de la diversité
-		$cards = array_merge($cards, array_map(function($r) {return $r->largeImageURL;}, json_decode(file_get_contents("https://pixabay.com/api/?key=15601609-98b6a08239d3ab0b6000e1f4f&image_type=photo&per_page=63&page=".$page))->hits));
+		$cards = array_merge($cards, array_map(function($r) {return $r->largeImageURL;}, json_decode(file_get_contents("https://pixabay.com/api/?key=${PIXABAY_API_KEY}&image_type=photo&per_page=63&page=".$page))->hits));
 	}
 	shuffle($cards);
 } else {
 	for ($page = 1; count($cards) < count($game->players)*7*2*3; $page++) { // *3 pour faire de la diversité
-		$cards = array_merge($cards, array_map(function($r) {return $r->largeImageURL;}, json_decode(file_get_contents("https://pixabay.com/api/?key=15601609-98b6a08239d3ab0b6000e1f4f&per_page=63&page=".$page))->hits));
+		$cards = array_merge($cards, array_map(function($r) {return $r->largeImageURL;}, json_decode(file_get_contents("https://pixabay.com/api/?key=${PIXABAY_API_KEY}&per_page=63&page=".$page))->hits));
 	}
 	shuffle($cards);
 }
