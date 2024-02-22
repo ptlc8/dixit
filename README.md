@@ -2,6 +2,8 @@
 
 Dixit est un jeu de cartes en ligne, les utilisateurs peuvent créer un salon ou en rejoindre et démarrer des partie sur le thème de leur choix
 
+![Capture d'écran](screenshot.jpg)
+
 Ce projet est actuellement déployé à cette URL : [ambi.dev/dixit](https://ambi.dev/dixit)
 
 ## Lancer en local
