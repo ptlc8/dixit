@@ -1,7 +1,7 @@
 <?php
 // initialisation session + BDD
 require('credentials.php');
-$mysqli = new mysqli(DIXIT_DB_HOST, DIXIT_DB_USER, DIXIT_DB_PASSWORD, DIXIT_DB_NAME);
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if ($mysqli->connect_errno) {
 	echo 'Erreur de connexion côté serveur, veuillez réessayer plus tard';
 	exit;

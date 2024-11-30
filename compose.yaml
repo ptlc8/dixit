@@ -1,0 +1,44 @@
+services:
+  web-server:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.web-server
+    ports:
+      - 80
+    depends_on:
+      - fast-cgi
+    restart: always
+    labels:
+      - webproxy.path=dixit
+  fast-cgi:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.fast-cgi
+    expose:
+      - 9000
+    environment:
+      DB_HOST: database
+      DB_USER: user
+      DB_PASS: secret
+      DB_NAME: dixit
+      PIXABAY_API_KEY: ${PIXABAY_API_KEY?}
+    depends_on:
+      - database
+    restart: always
+  database:
+    image: mariadb:${MARIADB_VERSION:-10.11}
+    expose:
+      - 3306
+    volumes:
+      - ./mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf:ro
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - database-data:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: super_secret
+      MARIADB_USER: user
+      MARIADB_PASSWORD: secret
+      MARIADB_DATABASE: dixit
+    restart: always
+volumes:
+  database-data:
+    driver: local

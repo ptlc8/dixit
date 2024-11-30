@@ -14,6 +14,7 @@
         <div id="join" style="display:none;">
             <img id="logo" />
             <div id="join-menu">
+                <h1>Dixit en ligne</h1>
                 <input id="name" placeholder="Pseudonyme" />
                 <div>
                     <div id="create-form">

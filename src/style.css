@@ -18,6 +18,9 @@ input {
 	text-align: center;
 	border-radius: 8px;
 }
+h1 {
+	text-shadow: 1px 1px 0 whitesmoke, -1px 1px 0 whitesmoke, -1px -1px 0 whitesmoke, 1px -1px 0 whitesmoke;
+}
 #join, #room, #game, #loading {
     position: absolute;
     top: 0;
