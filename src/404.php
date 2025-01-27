@@ -1,6 +1,6 @@
 <?php
 include("init.php");
-$images = json_decode(file_get_contents("https://pixabay.com/api/?key=".PIXABAY_API_KEY."&image_type=photo&per_page=5&page=1&q=404+Not+found"))->hits;
+$images = json_decode(file_get_contents("https://pixabay.com/api/?key=".getPixabayApiKey()."&image_type=photo&per_page=5&page=1&q=404+Not+found"))->hits;
 shuffle($images);
 $image = $images[0]->largeImageURL;
 ?>

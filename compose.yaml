@@ -2,7 +2,7 @@ services:
   web-server:
     build:
       context: .
-      dockerfile: ./Dockerfile.web-server
+      dockerfile: ./web-server.Dockerfile
     ports:
       - 80
     depends_on:
@@ -13,7 +13,7 @@ services:
   fast-cgi:
     build:
       context: .
-      dockerfile: ./Dockerfile.fast-cgi
+      dockerfile: ./fast-cgi.Dockerfile
     expose:
       - 9000
     environment:
@@ -26,12 +26,12 @@ services:
       - database
     restart: always
   database:
-    image: mariadb:${MARIADB_VERSION:-10.11}
+    build:
+      context: .
+      dockerfile: ./database.Dockerfile
     expose:
       - 3306
     volumes:
-      - ./mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf:ro
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
       - database-data:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: super_secret

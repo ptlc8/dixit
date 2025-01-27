@@ -12,14 +12,5 @@ RUN docker-php-ext-install mysqli
 COPY src /var/www/html
 WORKDIR /var/www/html
 
-# Set up the database connection and hCaptcha secret
-RUN echo "<?php \
-    define('DB_HOST', getenv('DB_HOST')); \
-    define('DB_USER', getenv('DB_USER')); \
-    define('DB_PASS', getenv('DB_PASS')); \
-    define('DB_NAME', getenv('DB_NAME')); \
-    define('PIXABAY_API_KEY', getenv('PIXABAY_API_KEY')); \
-?>" > /var/www/html/credentials.php
-
 # Start the server
 CMD ["php-fpm"]
